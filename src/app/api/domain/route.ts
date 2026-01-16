@@ -5,16 +5,16 @@ interface KeywordSuggestion {
 }
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*', // allow from anywhere
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Origin': '*', // allow from anywhere
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
 export async function OPTIONS() {
-  return new Response(null, {
-    status: 200,
-    headers: corsHeaders,
-  });
+    return new Response(null, {
+        status: 200,
+        headers: corsHeaders,
+    });
 }
 
 
@@ -53,7 +53,7 @@ async function getYahooSuggestions(keyword: string, country: string = "us"): Pro
         if (!response.ok) return [];
 
         const data = await response.json();
-        
+
         return (
             data?.r
                 ?.map((x: any) => x?.k)
@@ -113,7 +113,12 @@ export async function GET(request: NextRequest) {
 
 
         const suggestions = [...new Set([...bing, ...duck, ...yahoo])];
-        console.log("suggestions ---------- >>")
+        console.log("suggestions ---------- >>", NextResponse.json({
+            success: true,
+            query: keyword,
+            sources: ['bing', 'duckduckgo', 'yahoo'],
+            keywords: suggestions
+        }, { headers: corsHeaders }))
 
         return NextResponse.json({
             success: true,
