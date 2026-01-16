@@ -4,6 +4,20 @@ interface KeywordSuggestion {
     keyword: string;
 }
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*', // allow from anywhere
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: corsHeaders,
+  });
+}
+
+
 // ✅ LEGAL Bing autocomplete
 async function getBingSuggestions(
     keyword: string,
@@ -107,12 +121,12 @@ export async function GET(request: NextRequest) {
             query: keyword,
             sources: ['bing', 'duckduckgo', 'yahoo'],
             keywords: suggestions
-        });
+        }, { headers: corsHeaders });
     } catch (error) {
         console.error('API Error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
-            { status: 500 }
+            { status: 500, headers: corsHeaders }
         );
     }
 }
