@@ -111,10 +111,9 @@ export async function GET(request: NextRequest) {
             getYahooSuggestions(keyword, country),
         ]);
 
-        console.log(bing, duck, yahoo)
 
         const suggestions = [...new Set([...bing, ...duck, ...yahoo])];
-        console.log("suggestions ---------- >>", suggestions)
+        console.log("suggestions ---------- >>")
 
         return NextResponse.json({
             success: true,

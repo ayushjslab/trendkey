@@ -1,0 +1,17 @@
+name: Domain API Cron
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # runs every 5 minutes (minimum)
+  workflow_dispatch:        # allows manual run
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call /api/domain
+        run: |
+          curl -X POST \
+          https://trendkey.vercel.app/api/domain \
+          -H "Content-Type: application/json"
