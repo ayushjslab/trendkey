@@ -113,12 +113,7 @@ export async function GET(request: NextRequest) {
 
 
         const suggestions = [...new Set([...bing, ...duck, ...yahoo])];
-        console.log("suggestions ---------- >>", NextResponse.json({
-            success: true,
-            query: keyword,
-            sources: ['bing', 'duckduckgo', 'yahoo'],
-            keywords: suggestions
-        }, { headers: corsHeaders }))
+        console.log(suggestions)
 
         return NextResponse.json({
             success: true,
