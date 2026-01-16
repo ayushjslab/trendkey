@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Call /api/domain
         run: |
-          curl -X POST \
+          curl -X GET \
           https://trendkey.vercel.app/api/domain \
           -H "Content-Type: application/json"
