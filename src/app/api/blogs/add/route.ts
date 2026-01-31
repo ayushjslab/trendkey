@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         }
         const apiToken = authHeader.replace("Bearer ", "").trim();
 
-        if (!apiToken) {
+      if (!apiToken || apiToken !== process.env.API_TOKEN) {
             return NextResponse.json({ error: "Invalid API token" }, { status: 401 });
         }
 
@@ -68,9 +68,9 @@ export async function POST(req: NextRequest) {
         const { blogId, title, content, slug, seoTitle, seoDescription, keywords } = body;
         console.log(body)
 
-        if (!blogId || !title || !content || !slug || !seoTitle || !seoDescription || !keywords) {
+       if (!blogId || !title || !content || !slug) {
             return NextResponse.json(
-                { error: "Missing required fields" },
+                { error: "Missing required core fields" },
                 { status: 400, headers: corsHeaders }
             );
         }
