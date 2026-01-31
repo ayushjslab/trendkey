@@ -74,6 +74,8 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        console.log(body)
+
         const existingBlog = await Blog.findOne({ blogId });
         if (existingBlog) {
             return NextResponse.json(
