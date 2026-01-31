@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
         await connectDB();
 
         const { blogId, title, content, slug, seoTitle, seoDescription, keywords } = body;
+        console.log(body)
 
         if (!blogId || !title || !content || !slug || !seoTitle || !seoDescription || !keywords) {
             return NextResponse.json(
@@ -74,7 +75,6 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        console.log(body)
 
         const existingBlog = await Blog.findOne({ blogId });
         if (existingBlog) {
