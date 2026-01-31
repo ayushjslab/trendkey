@@ -9,12 +9,12 @@ export async function OPTIONS(req: NextRequest) {
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: Promise<{ blogId: string }> }
 ) {
     const corsHeaders = getCorsHeaders(req);
     try {
+        const body = await req.json();
         await connectDB();
-        const { blogId } = await params;
+        const { blogId } = body;
 
         const deletedBlog = await Blog.findOneAndDelete({ blogId });
 

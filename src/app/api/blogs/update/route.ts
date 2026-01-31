@@ -24,12 +24,10 @@ function normalizeKeywords(keywords: any) {
 
 export async function PATCH(
     req: NextRequest,
-    { params }: { params: Promise<{ blogId: string }> }
 ) {
     const corsHeaders = getCorsHeaders(req);
     try {
         await connectDB();
-        const { blogId } = await params;
         const body = await req.json();
 
         if (body.keywords) {
@@ -37,7 +35,7 @@ export async function PATCH(
         }
 
         const updatedBlog = await Blog.findOneAndUpdate(
-            { blogId },
+            { blogId: body.id },
             { $set: body },
             { new: true, runValidators: true }
         );

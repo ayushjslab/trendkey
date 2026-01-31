@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Blog from "@/models/blog";
 import { getCorsHeaders, handleOptions } from "@/lib/cors";
+import crypto from "crypto";
 
 export async function OPTIONS(req: NextRequest) {
     return handleOptions(req);
@@ -25,8 +26,44 @@ function normalizeKeywords(keywords: any) {
 export async function POST(req: NextRequest) {
     const corsHeaders = getCorsHeaders(req);
     try {
-        await connectDB();
+        const authHeader = req.headers.get("authorization");
+        const signatureHeader = req.headers.get("x-blog-signature");
+        const timestamp = req.headers.get("x-timestamp");
+
+        if (!authHeader || !signatureHeader || !timestamp) {
+            return NextResponse.json({ error: "Missing auth headers" }, { status: 401 });
+        }
+        const apiToken = authHeader.replace("Bearer ", "").trim();
+
+        if (!apiToken) {
+            return NextResponse.json({ error: "Invalid API token" }, { status: 401 });
+        }
+
+        const now = Date.now();
+        if (Math.abs(now - Number(timestamp)) > 5 * 60 * 1000) {
+            return NextResponse.json({ error: "Request expired" }, { status: 401 });
+        }
+
         const body = await req.json();
+        const payloadString = JSON.stringify(body);
+
+        const expectedSignature = crypto
+            .createHmac("sha256", process.env.SECRET_KEY!)
+            .update(payloadString + timestamp)
+            .digest("hex");
+
+        const receivedSignature = signatureHeader.replace("sha256=", "");
+
+        const isValid = crypto.timingSafeEqual(
+            Buffer.from(expectedSignature),
+            Buffer.from(receivedSignature)
+        );
+
+        if (!isValid) {
+            return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+        }
+
+        await connectDB();
 
         const { blogId, title, content, slug, seoTitle, seoDescription, keywords } = body;
 
