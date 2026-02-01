@@ -35,7 +35,7 @@ export async function PATCH(
         }
 
         const updatedBlog = await Blog.findOneAndUpdate(
-            { blogId: body.id },
+            { blogId: body.blogId},
             { $set: body },
             { new: true, runValidators: true }
         );

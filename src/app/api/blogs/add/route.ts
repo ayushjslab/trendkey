@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
         await connectDB();
 
-        const { blogId, title, content, slug, seoTitle, seoDescription, keywords } = body;
+        const { blogId, title, content, slug, seoTitle, seoDescription, keywords, thumbnail } = body;
         console.log(body)
 
        if (!blogId || !title || !content || !slug) {
@@ -93,6 +93,7 @@ export async function POST(req: NextRequest) {
             slug,
             seoTitle,
             seoDescription,
+            thumbnail,
             keywords: normalizedKeywords,
         });
 
