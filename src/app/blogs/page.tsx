@@ -13,6 +13,8 @@ const BlogsListPage = async () => {
     await connectDB();
     const blogs = await Blog.find({}).sort({ createdAt: -1 });
 
+    console.log(blogs)
+
     return (
         <div className="min-h-screen bg-[#050505] text-[#ededed] font-sans selection:bg-purple-500/30 overflow-x-hidden">
             {/* Background Decorative Glow */}
