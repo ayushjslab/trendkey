@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, TrendingUp, Search, Zap, Crown, Flame } from 'lucide-react';
-
+import Script from "next/script";
 const Trenkey = () => {
   const [keyword, setKeyword] = useState('');
   const [results, setResults] = useState<string[]>([]);
@@ -11,7 +11,7 @@ const Trenkey = () => {
   const fetchTrending = async () => {
     if (!keyword) return;
     setIsLoading(true);
-    
+
     try {
       const response = await fetch(`/api/domain?keyword=${keyword}`);
       const data = await response.json();
@@ -26,12 +26,61 @@ const Trenkey = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-purple-500/30">
-      
 
+      <>
+        {/* First HighPerformanceFormat Ad */}
+        <Script id="ad-1" strategy="afterInteractive">
+          {`
+          atOptions = {
+            'key' : '252065787da6d4d30206e817de1e37f2',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+          };
+        `}
+        </Script>
+        <Script
+          src="https://www.highperformanceformat.com/252065787da6d4d30206e817de1e37f2/invoke.js"
+          strategy="afterInteractive"
+        />
+
+        {/* EffectiveGate CPM Ad 1 */}
+        <Script
+          src="https://pl28706664.effectivegatecpm.com/be/bb/68/bebb68c853988e9d66d03ba849aa5aa1.js"
+          strategy="afterInteractive"
+        />
+
+        {/* EffectiveGate CPM Ad 2 */}
+        <div id="container-9d44dd2c09ceb9968f4d49034dc88380"></div>
+        <Script
+          async
+          data-cfasync="false"
+          src="https://pl28706668.effectivegatecpm.com/9d44dd2c09ceb9968f4d49034dc88380/invoke.js"
+          strategy="afterInteractive"
+        />
+
+        {/* Second HighPerformanceFormat Ad */}
+        <Script id="ad-2" strategy="afterInteractive">
+          {`
+          atOptions = {
+            'key' : '6f7e40ae974fdec0ba9c60c83fff5a9c',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+          };
+        `}
+        </Script>
+        <Script
+          src="https://www.highperformanceformat.com/6f7e40ae974fdec0ba9c60c83fff5a9c/invoke.js"
+          strategy="afterInteractive"
+        />
+      </>
       <main className="relative z-10 flex flex-col items-center justify-start px-6 pt-20">
-        
+
         {/* Floating Brand Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           className="mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center gap-2"
@@ -41,7 +90,7 @@ const Trenkey = () => {
         </motion.div>
 
         {/* Hero Title */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
@@ -56,12 +105,12 @@ const Trenkey = () => {
 
         {/* The "Sexy" Search Bar */}
         <div className="relative w-full max-w-xl group mb-20">
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileFocus={{ scale: 1.02 }}
             className="relative flex items-center bg-[#111] rounded-[2rem] border border-white/10 p-2 pl-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] group-focus-within:border-purple-500/50 transition-all duration-500"
           >
-            <input 
+            <input
               type="text"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
@@ -69,7 +118,7 @@ const Trenkey = () => {
               placeholder="Search a keyword..."
               className="w-full bg-transparent border-none focus:outline-none text-lg py-4 text-white placeholder-gray-700 font-medium"
             />
-            <button 
+            <button
               onClick={fetchTrending}
               disabled={isLoading}
               className="relative overflow-hidden bg-white text-black h-14 w-14 md:w-auto md:px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all active:scale-90 disabled:opacity-50"
@@ -104,14 +153,14 @@ const Trenkey = () => {
                 layout
                 initial={{ opacity: 0, scale: 0.5, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 260, 
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
                   damping: 20,
-                  delay: index * 0.05 
+                  delay: index * 0.05
                 }}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   rotate: index % 2 === 0 ? 2 : -2,
                   transition: { duration: 0.2 }
                 }}
@@ -119,9 +168,9 @@ const Trenkey = () => {
               >
                 {/* Randomly appearing icons for "Cute" factor */}
                 {index % 3 === 0 && (
-                   <div className="absolute -top-2 -right-2 bg-yellow-400 text-black p-1 rounded-full z-20 shadow-lg scale-75 rotate-12">
-                     <Flame size={12} fill="currentColor" />
-                   </div>
+                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-black p-1 rounded-full z-20 shadow-lg scale-75 rotate-12">
+                    <Flame size={12} fill="currentColor" />
+                  </div>
                 )}
 
                 <div className="px-8 py-5 rounded-[2rem] bg-gradient-to-b from-white/[0.08] to-transparent border border-white/10 backdrop-blur-md hover:border-purple-500/40 transition-colors cursor-pointer group shadow-xl">
@@ -141,7 +190,7 @@ const Trenkey = () => {
       {/* Decorative Floating Elements */}
       <AnimatePresence>
         {results.length === 0 && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -149,7 +198,7 @@ const Trenkey = () => {
           >
             <div className="flex gap-2">
               {[1, 2, 3].map((i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   animate={{ y: [0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 2, delay: i * 0.3 }}
