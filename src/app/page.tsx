@@ -26,57 +26,6 @@ const Trenkey = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-purple-500/30">
-
-      <>
-        {/* First HighPerformanceFormat Ad */}
-        <Script id="ad-1" strategy="afterInteractive">
-          {`
-          atOptions = {
-            'key' : '252065787da6d4d30206e817de1e37f2',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        `}
-        </Script>
-        <Script
-          src="https://www.highperformanceformat.com/252065787da6d4d30206e817de1e37f2/invoke.js"
-          strategy="afterInteractive"
-        />
-
-        {/* EffectiveGate CPM Ad 1 */}
-        <Script
-          src="https://pl28706664.effectivegatecpm.com/be/bb/68/bebb68c853988e9d66d03ba849aa5aa1.js"
-          strategy="afterInteractive"
-        />
-
-        {/* EffectiveGate CPM Ad 2 */}
-        <div id="container-9d44dd2c09ceb9968f4d49034dc88380"></div>
-        <Script
-          async
-          data-cfasync="false"
-          src="https://pl28706668.effectivegatecpm.com/9d44dd2c09ceb9968f4d49034dc88380/invoke.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Second HighPerformanceFormat Ad */}
-        <Script id="ad-2" strategy="afterInteractive">
-          {`
-          atOptions = {
-            'key' : '6f7e40ae974fdec0ba9c60c83fff5a9c',
-            'format' : 'iframe',
-            'height' : 300,
-            'width' : 160,
-            'params' : {}
-          };
-        `}
-        </Script>
-        <Script
-          src="https://www.highperformanceformat.com/6f7e40ae974fdec0ba9c60c83fff5a9c/invoke.js"
-          strategy="afterInteractive"
-        />
-      </>
       <main className="relative z-10 flex flex-col items-center justify-start px-6 pt-20">
 
         {/* Floating Brand Badge */}
